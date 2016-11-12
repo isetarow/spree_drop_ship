@@ -23,8 +23,8 @@ Spree::Product.class_eval do
   def populate_for_supplier!(supplier)
     variants_including_master.each do |variant|
       unless variant.suppliers.pluck(:id).include?(supplier.id)
-        variant.suppliers << supplier
-        supplier.stock_locations.each { |location| location.propagate_variant(variant) }
+        variant.suppliers = [supplier]
+        #supplier.stock_locations.each { |location| location.propagate_variant(variant) }
       end
     end
   end

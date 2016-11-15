@@ -1,0 +1,89 @@
+ja:
+  activerecord:
+    attributes:
+      spree/supplier:
+        commission_flat_rate: コミッションフラット
+        commission_percentage: コミッションパーセンテージ
+        name: 名前
+        tax_id: TAX ID
+        url: URL
+    errors:
+      models:
+        spree/supplier:
+          attributes:
+            url:
+              invalid: 不正なURLです
+              not_responding: '不正なURLです'
+  spree:
+    admin:
+      drop_ship_settings:
+        update:
+          success: 設定が完了しました
+      orders:
+        edit:
+          approve_drop_ship_orders: オーダーを承認する
+          resend_drop_ship_orders: オーダーを再送する
+          drop_ship_order_approval_confirmation: メールが送信されます。よろしいですか？
+        show:
+          approve_drop_ship_orders: オーダーを承認する
+          resend_drop_ship_orders: オーダーを再送する
+          drop_ship_order_approval_confirmation: メールが送信されます。よろしいですか？
+    back_to_orders_list: オーダーリストに戻る
+    back_to_suppliers: 農家一覧に戻る
+    business: ビジネス
+    cancel: キャンセル
+    company_info: 会社情報
+    confirm_order: オーダーを承認
+    contact_address: 連絡先
+    drop_ship: ドロップシップ
+    drop_ship_order_mailer:
+      supplier_order:
+        hello: "Hello %{name},"
+        subject: "%{name} Drop Shipment #%{number}"
+        thank_you_again: "Thank you again for your business, <b>%{name}</b>"
+    drop_ship_order_number: "Drop Ship Order #%{number}"
+    drop_ship_orders: Drop Ship Orders
+    drop_ship_settings: Drop Ship Settings
+    editing_supplier: 農家を編集
+    individual: 個別
+    listing_suppliers: 農家一覧
+    manage: 管理
+    must_be_logged_in: 'Must Be Logged In'
+    name: 名前
+    new_supplier: 新機農家
+    or: or
+    order_state:
+      active: Active
+      completed: Completed
+      confirmed: Confirmed
+      delivered: Delivered
+    resend_order_to_supplier: Resend Order To Supplier
+    save: 保存
+    search: 検索
+    send_order_to_supplier: Send Order To Supplier
+    shared:
+      unauthorized:
+        explained: You are not authorized to access this page.
+        unauthorized: Unauthorized
+    show_only_incomplete_orders: Show Only Incomplete Orders
+    signup: サインアップ
+    signup_to_become_a_supplier: 'Sign Up To Become A Supplier'
+    supplier: 農家
+    supplier_details: 農家詳細
+    supplier_info: 農家情報
+    supplier_information: 農家情報
+    supplier_mailer:
+      welcome:
+        hello: "Hello %{name},"
+        logging_into_your_account: logging into your account.
+        manage_your_account: You may now manage your profile and inventory by
+        subject: 'Thank you for signing up.  Please verify your information.'
+        thank_you_again: "Thank you again for your business, <b>%{name}</b>"
+        thank_you_for_signing_up: Thank you for signing up to be a drop ship supplier.
+    supplier_registration:
+      already_signed_up: "You've already signed up to become a supplier."
+      create:
+        invalid_password: Invalid password please sign in or sign up.
+        success: Thank you for signing up!
+    supplier_signup: Supplier Sign Up
+    suppliers: 農家

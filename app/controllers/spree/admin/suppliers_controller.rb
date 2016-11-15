@@ -9,7 +9,7 @@ class Spree::Admin::SuppliersController < Spree::Admin::ResourceController
   end
 
   def new
-    @object = Spree::Supplier.new(address_attributes: {country_id: Spree::Address.default.country_id})
+    @object = Spree::Supplier.new(address_attributes: {country_id: Spree::Address.default.country_id}, supplier_description: Spree::SupplierDescription.new)
   end
 
   private

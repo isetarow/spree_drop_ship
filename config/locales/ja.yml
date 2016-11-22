@@ -47,6 +47,7 @@ ja:
     editing_supplier: 農家を編集
     individual: 個別
     listing_suppliers: 農家一覧
+    listing_shipments: 配送一覧
     manage: 管理
     must_be_logged_in: 'Must Be Logged In'
     name: 名前

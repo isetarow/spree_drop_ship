@@ -82,16 +82,16 @@ class Spree::Supplier < Spree::Base
     end
 
     def create_stock_location
-      if self.stock_locations.empty?
-        location = self.stock_locations.build(
-          active: true,
-          country_id: self.address.try(:country_id),
-          name: self.name,
-          state_id: self.address.try(:state_id)
-        )
-        # It's important location is always created.  Some apps add validations that shouldn't break this.
-        location.save validate: false
-      end
+      # if self.stock_locations.empty?
+      #   location = self.stock_locations.build(
+      #     active: true,
+      #     country_id: self.address.try(:country_id),
+      #     name: self.name,
+      #     state_id: self.address.try(:state_id)
+      #   )
+      #   # It's important location is always created.  Some apps add validations that shouldn't break this.
+      #   location.save validate: false
+      # end
     end
 
     def send_welcome

@@ -3,43 +3,32 @@ module Spree
     class ShipmentsController < Spree::Admin::ResourceController
 
       def index
-        params[:q] ||= {}
-        # params[:q][:completed_at_null] ||= '1'
-        # @show_only_incomplete = params[:q][:completed_at_null].present?
-        # params[:q][:s] ||= @show_only_incomplete ? 'created_at desc' : 'completed_at desc'
-
-        # As date params are deleted if @show_only_incomplete, store
-        # the original date so we can restore them into the params
-        # after the search
-        created_at_gt = params[:q][:created_at_gt]
-        created_at_lt = params[:q][:created_at_lt]
-
-        if !params[:q][:created_at_gt].blank?
-          params[:q][:created_at_gt] = Time.zone.parse(params[:q][:created_at_gt]).beginning_of_day rescue ""
+        @date = Time.zone.parse(params[:date]) if params[:date].present?
+        @date ||= 0.days.since.next_week(:monday)
+        @orders = Spree::Subscription.next_week(@date).map(&:order)
+        @products = []
+        @orders.each do |o|
+          o.products.each do |p|
+            if p.assemblies_parts.present?
+              p.assemblies_parts.each do |part|
+                part.count.times do
+                  @products << part.part.product
+                end
+              end
+            else
+              @products << p
+            end
+          end
         end
+        supplier_id = spree_current_user.supplier_id
+        @products = @products.select{|p| supplier_id == p.suppliers.first.id}
 
-        if !params[:q][:created_at_lt].blank?
-          params[:q][:created_at_lt] = Time.zone.parse(params[:q][:created_at_lt]).end_of_day rescue ""
-        end
+        @pending_products = Spree::Order.where(shipment_state: :pending)
+                             .map(&:line_items)
+                             .flatten.select{|l| l.product.suppliers.first.id == supplier_id}
+                             .map(&:product)
 
-        @search = Spree::Shipment.accessible_by(current_ability, :index).ransack(params[:q])
-        @shipments = @search.result.
-          page(params[:page]).
-          per(params[:per_page] || Spree::Config[:orders_per_page])
 
-        # Restore dates
-        params[:q][:created_at_gt] = created_at_gt
-        params[:q][:created_at_lt] = created_at_lt
-      end
-
-      private
-
-      def find_resource
-        if parent_data.present?
-          parent.send(controller_name).find_by!(number: params[:id])
-        else
-          model_class.find_by!(number: params[:id])
-        end
       end
 
     end
